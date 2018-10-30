@@ -5,6 +5,18 @@
  */
 package lendle.courses.wp.quiz_comboboxandslider;
 
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JSlider;
+import javax.swing.WindowConstants;
+import javax.swing.event.ChangeEvent;
+import javax.swing.plaf.basic.BasicScrollPaneUI;
+
 /**
  *
  * @author lendle
@@ -14,9 +26,9 @@ public class NewJFrame extends javax.swing.JFrame {
     /**
      * Creates new form NewJFrame
      */
-    public NewJFrame() {
+    /*public NewJFrame() {
         initComponents();
-    }
+    }*/
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,50 +39,17 @@ public class NewJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jSlider1 = new javax.swing.JSlider();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel1.setText("combobox 裡面放0，10，20，30......100");
-
-        jLabel2.setText("slider 的範圍是 0~100");
-
-        jLabel3.setText("在 combobox 選值後，反映在 slider，記得字串比對用 equals");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jSlider1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+            .addGap(0, 328, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(71, 71, 71)
-                .addComponent(jSlider1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
-                .addGap(27, 27, 27))
+            .addGap(0, 305, Short.MAX_VALUE)
         );
 
         pack();
@@ -102,20 +81,51 @@ public class NewJFrame extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        JFrame frame = new JFrame();
+        frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        frame.setLayout(new FlowLayout());
+        JComboBox combo = new JComboBox();
+        JSlider slider = new JSlider();
+        frame.add(slider);
+        slider.setMaximum(100);
+        slider.setMinimum(0);
+        for(int i=10;i<=100;i=i+10){
+            combo.addItem(""+i);
+        }
+        frame.add(combo);
+        frame.setSize(500,500);
+        frame.setVisible(true);
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new NewJFrame().setVisible(true);
             }
         });
-    }
+        combo.addActionListener(new ActionListener(){
+            public void changed(ObservableValue ov, Object t, Object t1) {
+                slider.setValue((int) combo.getSelectedItem());
+            }
+         
+        /*slider.addAncestorListener(new ActionL
+            @Override
+            public void changed(ObservableValue ov, Object t, Object t1) {
+                System.out.println(combo.getSelectedItem());
+                
+            }
+        }*/
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
+                }
+}
+                
+
+         
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JSlider jSlider1;
     // End of variables declaration//GEN-END:variables
-}
+
